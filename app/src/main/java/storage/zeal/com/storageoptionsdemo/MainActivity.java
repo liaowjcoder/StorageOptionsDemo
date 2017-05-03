@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testExternalStoragePrivateDir();
+        cacheInner();
 
     }
 
@@ -94,6 +94,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //databaseList()
+
+    }
+
+    /**
+     * 内存缓存空间
+     */
+    private void cacheInner() {
+        // /data/user/0/storage.zeal.com.storageoptionsdemo/cache
+        File cacheDir = getCacheDir();
+        Log.e(TAG, "cacheDir:" + cacheDir.getAbsolutePath());
+
+        //File downloadCacheDirectory = Environment.getDownloadCacheDirectory();
+        //Log.e(TAG,"downloadCache:"+downloadCacheDirectory.getAbsolutePath());// /cache
+        //File dataDirectory = Environment.getDataDirectory();
+        //Log.e(TAG,"dataDirectory:"+dataDirectory.getAbsolutePath());// /data
     }
 
     /**
@@ -170,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
         // /storage/sdcard/Android/data/storage.zeal.com.storageoptionsdemo/files/Pictures
 
 
-
         //Android 模拟器访问的结果
         // /storage/emulated/0/Android/data/storage.zeal.com.storageoptionsdemo/files
         // /storage/0EEB-1C0B/Android/data/storage.zeal.com.storageoptionsdemo/files
@@ -181,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 公共的共享目录 例如图片，音乐，视频
      */
-    public void saveFileSharedByOtherApp() throws IOException {
+    public void publicExtenalStorage() throws IOException {
         if (!isExternalStorageWritable()) {
             Log.e(TAG, "sd 卡不可用");
             return;
